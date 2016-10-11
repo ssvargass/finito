@@ -42,15 +42,20 @@ export class AppComponent {
     comparePalabra(){
         let letras = this.palabra.split('');
         let counter = 0;
-        this.messages = {};
-        
+        this.messages = {
+            message: `La cadena ${this.palabra} no es válida`,
+            type: 'alert-warning',
+        };
+        console.log('-----------------');
         for(let letra of letras){
             let position = this.letraArr.indexOf(letra);
+            console.log(letra + " - "+position);
             if(position < 0){
                 this.messages = {
                     message: `La letra ${letra} no esta en el vocabulario`,
                     type: 'alert-danger',
                 }
+                counter = 0;
             } else {
                 let estado = this.estadoArr[counter].estados[position];
                 console.log(estado);
