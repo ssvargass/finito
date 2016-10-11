@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form action="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label for="exampleInputEmail1">Númuero de estados</label>
+                            <input type="number" class="form-control" [(ngModel)]="estados" name="estados" size="10" (keyup)="setEstados()"/>
+                        </div>
+                        <div class="col-xs-4">
+                            <label for="exampleInputEmail1">Númuero de letras</label>
+                            <input type="number" class="form-control" [(ngModel)]="letras" name="letras" size="10" (keyup)="setLetras()"/>
+                        </div>
+                        <div class="col-xs-4">
+                            <label for="exampleInputEmail1">Estado de aceptación</label>
+                            <input type="number" class="form-control" [(ngModel)]="aceptacion" name="aceptacion" size="10"/>
+                        </div>
+                    </div>
+                </div>
+                <table class="table"> 
+                    <caption>Función de transición de estado.</caption> 
+                    <thead> 
+                        <tr> 
+                            <th>Estado</th> 
+                            <th *ngFor="let letra of letraArr; let i=index">
+                                <input type="text" class="form-control" [(ngModel)]="letraArr[i]" [ngModelOptions]="{standalone: true}" size="1"/>
+                            </th>
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        <tr *ngFor="let estado of estadoArr; let e=index"> 
+                            <th scope="row">e{{estado.id}}</th> 
+                            <th *ngFor="let letra of letraArr; let l=index">                                
+                                <input type="text" class="form-control" [(ngModel)]="estadoArr[e].estados[l]" [ngModelOptions]="{standalone: true}" size="1"/>
+                            </th>
+                        </tr>     
+                    </tbody> 
+                </table>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="exampleInputEmail1">Cadena a comparar</label>
+                        <input type="text" class="form-control" [(ngModel)]="palabra" name="palabra" size="10" (keyup)="comparePalabra()"/>
+                    </div>
+                </div>
+            </form>
+            Letras: <br>
+            {{letraArr | json}}
+            <br>
+            Estados: <br>
+            {{estadoArr | json}}
+            <br>
+            {{palabra}}
+            <br>
+            <div *ngIf="messages">
+                <div class="alert {{messages.type}}" role="alert">{{messages.message}}</div>
+            </div>
+            
+        </div>
+    </div>
+</div>
